@@ -1,5 +1,7 @@
 from django.urls import path 
-from api.apiviews import ProductCreate,ProductList, ProductDetail, CategorySave,CategoryList, CategoryDetail, SubCategorySave,SubCategoryList, SubCategoryDetail
+from api.apiviews import ProductCreate,ProductList,ProductDetail,\
+        CategorySave,CategoryList, CategoryDetail,\
+        SubCategorySave,SubCategoryList, SubCategoryDetail, SubCategoryListByCategory 
 
 urlpatterns = [
     # Productos
@@ -15,5 +17,9 @@ urlpatterns = [
     path('v2/subcategories/', SubCategoryList.as_view(), name='subcategories_list'),
     path('v2/subcategory/<int:pk>/', SubCategoryDetail.as_view(), name='subcategories_list'),
     # Categorías con sus Subcategorías
+    # path('v3/category/<int:pk>/subcategories/'),
+    # path('v3/category/<int:pk>/subcategory/<int:pk>'),
     
+    # SubCategorías por Categorías
+    path('v3/category/<int:pk>/subcategories', SubCategoryListByCategory.as_view(), name='subcategories_by_category'),
 ]

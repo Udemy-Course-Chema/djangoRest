@@ -61,6 +61,14 @@ class SubCategoryList(generics.ListCreateAPIView):
     serializer_class = SubCategorySerializer
     
 
+class SubCategoryListByCategory(generics.ListCreateAPIView):
+    
+    def get_queryset(self):
+        queryset = SubCategory.objects.filter(category = self.kwargs["pk"] ) 
+        return queryset
+    serializer_class = SubCategorySerializer
+    
+
 # Detalle de una subcategoría
 class SubCategoryDetail(generics.RetrieveDestroyAPIView):
     queryset = SubCategory.objects.all()
