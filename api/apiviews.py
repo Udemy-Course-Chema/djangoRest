@@ -5,8 +5,8 @@
 # ------- NUEVA VISTA GENÉRICA ----------
 from rest_framework import generics
 
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, Category, SubCategory
+from .serializers import ProductSerializer, CategorySerializer, SubCategorySerializer
 
 # class ProductList(APIView):
 #     def get(self,request):
@@ -20,6 +20,11 @@ from .serializers import ProductSerializer
 #         data = ProductSerializer( product ).data
 #         return Response( data )
 
+
+# Crear un Product 
+class ProductCreate( generics.CreateAPIView):
+    serializer_class = ProductSerializer
+
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -27,3 +32,37 @@ class ProductList(generics.ListCreateAPIView):
 class ProductDetail(generics.RetrieveDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+
+# Guardar una categoría
+class CategorySave(generics.CreateAPIView):
+    serializer_class = CategorySerializer
+
+# Listar las categorías
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+# Detalles de una categoría    
+class CategoryDetail(generics.RetrieveDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    
+
+# Guardar una subcategoría
+class SubCategorySave(generics.CreateAPIView):
+    serializer_class = SubCategorySerializer
+
+
+# Listar las subcategorías
+class SubCategoryList(generics.ListCreateAPIView):
+    queryset = SubCategory.objects.all()
+    serializer_class = SubCategorySerializer
+    
+
+# Detalle de una subcategoría
+class SubCategoryDetail(generics.RetrieveDestroyAPIView):
+    queryset = SubCategory.objects.all()
+    serializer_class = SubCategorySerializer
+    
